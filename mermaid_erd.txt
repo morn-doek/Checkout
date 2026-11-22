@@ -1,0 +1,50 @@
+erDiagram
+    CATEGORIES ||--o{ PRODUCTS : "contains"
+    CUSTOMERS ||--o{ ORDERS : "places"
+    ORDERS ||--|{ ORDER_ITEMS : "has"
+    PRODUCTS ||--|{ ORDER_ITEMS : "appears_in"
+
+    CUSTOMERS {
+        int customer_id PK
+        string first_name
+        string last_name
+        string email
+        string phone_number
+        string address
+        string city
+    }
+
+    CATEGORIES {
+        int category_id PK
+        string category_name
+        string description
+    }
+
+    PRODUCTS {
+        int product_id PK
+        int category_id FK
+        string name
+        string description
+        decimal price
+        int stock_quantity
+    }
+
+    ORDERS {
+        string order_id PK
+        int customer_id FK
+        datetime order_date
+        string shipping_method
+        decimal shipping_fee
+        decimal subtotal
+        decimal total_amount
+        string order_status
+    }
+
+    ORDER_ITEMS {
+        int order_item_id PK
+        string order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+        decimal subtotal
+    }
